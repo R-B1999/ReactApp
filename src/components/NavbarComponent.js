@@ -23,7 +23,7 @@ class NavToggle extends Component {
                     <div className="container-fluid">
 
                         <NavbarBrand className="logo offset-1" href="/">
-                            <img src='https://github.com/R-B1999/ReactApp/blob/master/public/assets/images/logo.png' className="logo__img" alt="COMIDA RÁPIDA" />
+                            <img src='/assets/images/logo.png' className="logo__img" alt="COMIDA RÁPIDA" />
                         </NavbarBrand>
 
                         <NavbarToggler onClick={this.toggleNav} />
@@ -32,19 +32,19 @@ class NavToggle extends Component {
                             <Nav navbar>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="ReactApp/home">Home</NavLink>
+                                    <NavLink className="nav-link" to="/home">Home</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="ReactApp/menu">Menu</NavLink>
+                                    <NavLink className="nav-link" to="/menu">Menu</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="ReactApp/about">About</NavLink>
+                                    <NavLink className="nav-link" to="/about">About</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="ReactApp/contact">Contact</NavLink>
+                                    <NavLink className="nav-link" to="/contact">Contact</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

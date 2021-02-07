@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
 
     const mystyle = {
-        background: "url('/public/assets/images/background.jpg')",
+        background: "url('/assets/images/background.jpg')",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "right center",
         backgroundSize: "cover",
@@ -22,7 +22,7 @@ export const Header = () => {
                                 <h1>COMIDA RÁPIDA</h1>
                                 <p>If you have too, today’s your lucky day. Because I made this for you so that you never have to feel that frustration or waste that time again</p>
                             </div>
-                            <Link to="ReactApp/menu" className="btn btn-lg __link">Order Now</Link>
+                            <Link to="/menu" className="btn btn-lg __link">Order Now</Link>
                         </div>
                     </div>
                 </div>
