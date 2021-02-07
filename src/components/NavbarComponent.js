@@ -23,7 +23,7 @@ class NavToggle extends Component {
                     <div className="container-fluid">
 
                         <NavbarBrand className="logo offset-1" href="/">
-                            <img src='/assets/images/logo.png' className="logo__img" alt="COMIDA RÁPIDA" />
+                            <img src='https://github.com/R-B1999/ReactApp/blob/master/public/assets/images/logo.png' className="logo__img" alt="COMIDA RÁPIDA" />
                         </NavbarBrand>
 
                         <NavbarToggler onClick={this.toggleNav} />
