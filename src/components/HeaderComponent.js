@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
 
     const mystyle = {
-        background: "url('/assets/images/background.jpg')",
+        background: "url('/public/assets/images/background.jpg')",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "right center",
         backgroundSize: "cover",
