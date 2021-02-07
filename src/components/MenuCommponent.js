@@ -8,7 +8,7 @@ export const Menu = (props) => {
             <div key={dish.id} className="col-12 col-sm-6 col-md-4 col-lg-3  p-2">
                 <Card title={dish.description} >
                     <CardHeader>{dish.name}</CardHeader>
-                    <Link to={`/menu/${dish.id}`}>
+                    <Link to={`ReactApp/menu/${dish.id}`}>
                         <CardImg src={dish.image}></CardImg>
                     </Link>
                     <CardBody>

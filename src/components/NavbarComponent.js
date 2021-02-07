@@ -32,19 +32,19 @@ class NavToggle extends Component {
                             <Nav navbar>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="/home">Home</NavLink>
+                                    <NavLink className="nav-link" to="ReactApp/home">Home</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="/menu">Menu</NavLink>
+                                    <NavLink className="nav-link" to="ReactApp/menu">Menu</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="/about">About</NavLink>
+                                    <NavLink className="nav-link" to="ReactApp/about">About</NavLink>
                                 </NavItem>
 
                                 <NavItem className="nav_item">
-                                    <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                                    <NavLink className="nav-link" to="ReactApp/contact">Contact</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

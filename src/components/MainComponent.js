@@ -33,11 +33,11 @@ class Main extends Component {
             <div>
                 <NavToggle />
                 <Switch>
-                    <Route path="/home" component={Homepage} />
-                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
-                    <Route path="/contact" component={Contact} />
-                    <Route path="/menu/:dishId" component={this.dishwithId} />
-                    <Redirect to="/home" />
+                    <Route path="/ReactApp/home" component={Homepage} />
+                    <Route exact path="/ReactApp/menu" component={() => <Menu dishes={this.props.dishes} />} />
+                    <Route path="/ReactApp/contact" component={Contact} />
+                    <Route path="/ReactApp/menu/:dishId" component={this.dishwithId} />
+                    <Redirect to="/ReactApp/home" />
                 </Switch>
                 {/* <Homepage /> */}
                 <Footer />
