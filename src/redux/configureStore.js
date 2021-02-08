@@ -1,10 +1,15 @@
-import { createStore } from 'redux';
-import { Reducer, initialState } from './reducer';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Dishes } from "./dishes";
+import { Comments } from "./comments";
+import { Chefs } from "./chefs";
 
 export const ConfigureStore = () => {
     const store = createStore(
-        Reducer,
-        initialState
+        combineReducers({
+            dishes: Dishes,
+            comments: Comments,
+            chefs: Chefs
+        })
     );
     return store;
 }

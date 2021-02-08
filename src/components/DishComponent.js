@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardTitle } from 'reactstrap';
-import { Comments } from './CommentsComponent';
+import Comments from './CommentsComponent';
 
 
 export const Dish = (props) => {
@@ -38,7 +38,11 @@ export const Dish = (props) => {
                 </Card>
                 <hr />
 
-                <Comments comments={props.comments} />
+                <Comments
+                    comments={props.comments}
+                    dishId={props.dish.id}
+                    addComment={props.addComment}
+                />
 
             </div>
         </div>

@@ -11,7 +11,7 @@ export const Home = () => {
                             <div className="flex py-5 my-2">
                                 <h1>Welcome To The COMIDA RÁPIDA</h1>
                                 <p>If you like Streetfood, you will love Comida Rápida</p>
-                                <Link className="btn btn-lg __link">Learn More</Link>
+                                <Link to="/about" className="btn btn-lg __link">Learn More</Link>
                             </div>
                         </div>
                         <div className="col-10 col-sm-9 col-md-4 col-lg-5">

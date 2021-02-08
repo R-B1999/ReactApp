@@ -226,7 +226,7 @@ body {
   display: none;
 }
 
-.dish__content .dish__detail .card-subtitle{
+.dish__content .dish__detail .card-subtitle {
   font-style: italic;
   text-transform: lowercase;
   font-weight: 600;
@@ -240,13 +240,41 @@ body {
   color: black;
 }
 
-.comment h1{
+.comment h1 {
   font-weight: bolder;
   text-align: center;
   text-shadow: 3px 3px 3px darkgreen;
 }
 
 
+.about {
+  background-color: rgb(110, 170, 120);
+}
+
+.about .about__content {
+  background-color: darkseagreen;
+  padding: 2% 0%;
+  text-align: justify;
+}
+
+.about .about__content p {
+  font-size: larger;
+}
+
+.chef .chef__content .chef__card {
+  border: 2px solid black;
+}
+
+.chef .chef__content .chef__card .card-header {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.chef .chef__content .chef__card .card-img {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-radius: 0px;
+}
 
 .__header {
   height: 75px;
