@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, CardSubtitle, CardHeader } from 'reactstrap';
 import { baseUrl } from '../shared/baseurl';
+import { Error } from './ErrorComponent';
+import { Loading } from './LoadingComponent';
 
 export const Menu = (props) => {
     return (
@@ -25,7 +27,7 @@ export const Menu = (props) => {
 const MenuRender = ({ dishes, isLoading, errMsg }) => {
     const menu = dishes.map((dish) => {
         return (
-            <div key={dish.id} className="col-12 col-sm-6 col-md-4 col-lg-3  p-2">
+            <div key={dish.id} className="col-12 col-sm-6 col-md-4 col-lg-3  p-1">
                 <Card title={dish.description} >
                     <CardHeader>{dish.name}</CardHeader>
                     <Link to={`/menu/${dish.id}`}>
@@ -44,11 +46,11 @@ const MenuRender = ({ dishes, isLoading, errMsg }) => {
 
     if (isLoading) {
         return (
-            <h2>loading</h2>
+            <Loading />
         );
     } else if (errMsg) {
         return (
-            <h4>{errMsg}</h4>
+            <Error msg={errMsg} />
         );
     } else {
         return (

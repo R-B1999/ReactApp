@@ -114,6 +114,13 @@ body {
 
 
 .banner {
+  
+  background: url( 'http://localhost:3001/images/background.jpg');
+  background-color: rgb(110, 170, 120);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  background-attachment: fixed;
   width: 100% ;
   height: 100vh;
   color:navy;
@@ -276,6 +283,17 @@ body {
   border-radius: 0px;
 }
 
+
+
+
+
+.error .error__content{
+  height: 70vh;
+}
+
+.loading .loading__content{
+  height: 70vh;
+}
 .__header {
   height: 75px;
 }

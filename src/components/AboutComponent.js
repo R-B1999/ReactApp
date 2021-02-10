@@ -1,5 +1,5 @@
 import React from 'react';
-import {Chef} from './ChefComponent';
+import { Chef } from './ChefComponent';
 
 export const About = (props) => {
     return (
@@ -25,7 +25,11 @@ export const About = (props) => {
                     </div>
                     <hr />
                 </div>
-                <Chef chefs={props.chefs}/>
+                <Chef
+                    chefs={props.chefs}
+                    isLoading={props.chefsLoading}
+                    errMsg={props.chefsErrMsg}
+                />
             </div>
         </div>
     )

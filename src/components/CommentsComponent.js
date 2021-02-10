@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import { Media } from 'reactstrap';
 import { CommentModal } from "./CommentModalComponent";
 
@@ -45,6 +44,7 @@ class Comments extends Component {
         return (
             <div>
                 <div className="container comment">
+                {/* <h1 onClick={()=>this.props.fetchComments(this.props.dishId)}>Comments</h1> */}
                     <h1>comment</h1>
                     <hr />
                     <Media list>

@@ -8,7 +8,7 @@ import { Dish } from "./DishComponent";
 import { Footer } from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment, fetchDishes, fetchChefs } from "../redux/ActionCreators";
+import { postComment, fetchDishes, fetchChefs, fetchComments } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
     return {
@@ -20,9 +20,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+        addComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
         fetchDishes: () => dispatch(fetchDishes()),
-        fetchChefs: () => dispatch(fetchChefs())
+        fetchChefs: () => dispatch(fetchChefs()),
+        fetchComments: (dishId) => dispatch(fetchComments(dishId))
     }
 }
 
@@ -32,8 +33,12 @@ class Main extends Component {
         return (
             <Dish
                 dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId))[0]}
-                comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId))}
+                // comments={this.props.comments.comments}
+                comments={this.props.comments.comments.filter((comment)=>comment.dishId===parseInt(match.params.dishId))}
+                // fetchComments={this.props.fetchComments}
                 addComment={this.props.addComment}
+                dishesLoading={this.props.dishes.isLoading}
+                dishesErrMsg={this.props.dishes.errMsg}
             />
         );
     }
@@ -44,6 +49,7 @@ class Main extends Component {
                 dishesLoading={this.props.dishes.isLoading}
                 dishes={this.props.dishes.dishes}
                 dishesErrMsg={this.props.dishes.errMsg}
+                fetchComments={this.props.fetchComments}
             />
         );
     }
@@ -61,6 +67,7 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchDishes();
         this.props.fetchChefs();
+        this.props.fetchComments(0);
     }
 
     render() {

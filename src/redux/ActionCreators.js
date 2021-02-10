@@ -1,15 +1,44 @@
 import * as ActionType from "./ActionTypes";
 import { baseUrl } from "../shared/baseurl";
 
-export const addComment = (dishId, rating, author, comment) => ({
+export const addComment = (comment) => ({
     type: ActionType.ADD_COMMENT,
-    payload: {
+    payload: comment
+});
+
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+    const newComment = {
         dishId: dishId,
         rating: rating,
         author: author,
         comment: comment
     }
-});
+    newComment.date = new Date().toISOString();
+    return fetch(baseUrl + 'comments', {
+        method: 'POST',
+        body: JSON.stringify(newComment),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "same-origin"
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            let error = new Error("Error " + response.status + ":" + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }, err => {
+        let errMsg = new Error(err.message);
+        console.error(errMsg);
+        throw errMsg;
+    }).then(comment => {
+        dispatch(addComment(comment))
+    }).catch(err => {
+        dispatch(dishesFailed(err.message))
+    });
+}
 
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
@@ -34,16 +63,16 @@ export const fetchDishes = () => (dispatch) => {
 
 };
 
-export const dishesLoading = () => ({
+const dishesLoading = () => ({
     type: ActionType.DISHES_LOADING
 });
 
-export const dishesFailed = (errMsg) => ({
+const dishesFailed = (errMsg) => ({
     type: ActionType.DISHES_FAILED,
     payload: errMsg
 });
 
-export const addDishes = (dishes) => ({
+const addDishes = (dishes) => ({
     type: ActionType.ADD_DISHES,
     payload: dishes
 });
@@ -71,16 +100,48 @@ export const fetchChefs = () => (dispatch) => {
 
 };
 
-export const chefsLoading = () => ({
+const chefsLoading = () => ({
     type: ActionType.CHEFS_LOADING
 });
 
-export const chefsFailed = (errMsg) => ({
+const chefsFailed = (errMsg) => ({
     type: ActionType.CHEFS_FAILED,
     payload: errMsg
 });
 
-export const addChefs = (chefs) => ({
+const addChefs = (chefs) => ({
     type: ActionType.ADD_CHEFS,
     payload: chefs
+});
+
+
+export const fetchComments = (dishId) => (dispatch) => {
+    return fetch(baseUrl + 'comments').then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            let error = new Error("Error " + response.status + ":" + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }, err => {
+        let errMsg = new Error(err.message);
+        console.error(errMsg);
+        throw errMsg;
+    }).then(comments => {
+        dispatch(addComments(comments))
+    }).catch(err => {
+        dispatch(commentsFailed(err.message))
+    });
+
+};
+
+const addComments = (comments) => ({
+    type: ActionType.ADD_COMMENTS,
+    payload: comments
+});
+
+const commentsFailed = (errMsg) => ({
+    type: ActionType.COMMENTS_FAILED,
+    payload: errMsg
 });

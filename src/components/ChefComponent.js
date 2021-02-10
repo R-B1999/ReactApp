@@ -1,6 +1,8 @@
 import React from 'react'
 import { Card, CardBody, CardHeader, CardImg, CardText, CardTitle } from 'reactstrap'
 import { baseUrl } from '../shared/baseurl';
+import { Error } from './ErrorComponent';
+import { Loading } from './LoadingComponent';
 
 export const Chef = (props) => {
     const chef = props.chefs.map((chef) => {
@@ -17,17 +19,28 @@ export const Chef = (props) => {
             </div>
         );
     });
-    return (
-        <div className="chef">
-            <div className="container">
-                <div className="row py-3">
-                    <h2>Our Honourable Chefs</h2>
+
+    if (props.isLoading) {
+        return (
+            <Loading />
+        )
+    } else if (props.errMsg) {
+        return (
+            <Error msg={props.errMsg} />
+        )
+    } else {
+        return (
+            <div className="chef">
+                <div className="container">
+                    <div className="row py-3">
+                        <h2>Our Honourable Chefs</h2>
+                    </div>
+                    <div className="row justify-content-around chef__content mb-3 p-2 shadow">
+                        {chef}
+                    </div>
                 </div>
-                <div className="row justify-content-around chef__content mb-3 p-2 shadow">
-                    {chef}
-                </div>
+                <hr />
             </div>
-            <hr />
-        </div>
-    )
+        )
+    }
 }

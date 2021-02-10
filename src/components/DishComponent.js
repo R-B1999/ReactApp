@@ -1,10 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardTitle } from 'reactstrap';
+import { baseUrl } from '../shared/baseurl';
 import Comments from './CommentsComponent';
+import { Error } from './ErrorComponent';
+import { Loading } from './LoadingComponent';
 
 
 export const Dish = (props) => {
+    if (props.dishesLoading) {
+        return (
+            <Loading />
+        );
+    } else if (props.dishesErrMsg) {
+        return (
+            <Error msg={props.dishesErrMsg} />
+        );
+    } else if (props.dish != null) {
+        return (
+            <RenderDish 
+            dish={props.dish}
+            comments={props.comments}
+            // fetchComments={props.fetchComments}
+            addComment={props.addComment}
+            />
+        );
+    } else {
+        return (
+            <div />
+        );
+    }
+}
+
+const RenderDish = (props) => {
     return (
         <div className="dish__content">
             <div className="__header" />
@@ -14,7 +42,7 @@ export const Dish = (props) => {
                     <div className="row justify-content-center ">
 
                         <div className="col-10 col-md-7 img">
-                            <CardImg src={props.dish.image} className="my-auto shadow" />
+                            <CardImg src={baseUrl+props.dish.image} className="my-auto shadow" />
                         </div>
 
                         <div className="col-10 col-md-5 my-auto dish__detail">
@@ -42,9 +70,10 @@ export const Dish = (props) => {
                     comments={props.comments}
                     dishId={props.dish.id}
                     addComment={props.addComment}
+                    // fetchComments={props.fetchComments}
                 />
 
             </div>
         </div>
-    )
+    );
 }

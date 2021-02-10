@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseurl';
 
 export const Home = () => {
     return (
@@ -16,7 +17,7 @@ export const Home = () => {
                         </div>
                         <div className="col-10 col-sm-9 col-md-4 col-lg-5">
                             <div className="home__img py-4 px-1 row align-items-center justify-content-center">
-                                <img src='/assets/images/donuts.jpg' alt='DONUTS' />
+                                <img src={baseUrl + '/images/donuts.jpg'} alt='DONUTS' />
                             </div>
                         </div>
                     </div>

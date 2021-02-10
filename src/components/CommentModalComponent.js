@@ -8,8 +8,8 @@ const handleSubmit = (values, toggleCommentModal, dishId, addComment) => {
 }
 
 const required = (val) => val && val.length;
-const maxlenght = (len) => (val) => !val || (val.lenght <= len);
-const minlength = (len) => (val) => !val || (val.lenght >= len);
+const maxlength = (len) => (val) => !(val) || (val.length <= len);
+const minlength = (len) => (val) => !val || (val.length >= len);
 
 export const CommentModal = (props) => {
     return (
@@ -35,7 +35,7 @@ export const CommentModal = (props) => {
                             validators={{
                                 required,
                                 minlength: minlength(3),
-                                maxlenght: maxlenght(15)
+                                maxlength: maxlength(15)
                             }} />
                         <Errors
                             className="text-danger"
@@ -44,7 +44,7 @@ export const CommentModal = (props) => {
                             messages={{
                                 required: "Required",
                                 minlength: "Must be greater than 2 characters",
-                                maxlenght: "Must be 15 characters or less"
+                                maxlength: "Must be 15 characters or less"
                             }} />
                     </Row>
 

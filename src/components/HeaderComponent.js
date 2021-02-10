@@ -2,17 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
-
-    const mystyle = {
-        background: "url('/assets/images/background.jpg')",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "right center",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed"
-    }
-
     return (
-        <div className="banner" style={mystyle}>
+        <div className="banner">
             <div className="banner__content">
                 <div className="container">
                     <div className="row">

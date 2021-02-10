@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Nav, Collapse, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { baseUrl } from '../shared/baseurl';
 
 class NavToggle extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class NavToggle extends Component {
                     <div className="container-fluid">
 
                         <NavbarBrand className="logo offset-1" href="/">
-                            <img src='/assets/images/logo.png' className="logo__img" alt="COMIDA RÁPIDA" />
+                            <img src={baseUrl + '/images/logo.png'} className="logo__img" alt="COMIDA RÁPIDA" />
                         </NavbarBrand>
 
                         <NavbarToggler onClick={this.toggleNav} />
