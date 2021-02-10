@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, CardBody, CardHeader, CardImg, CardText, CardTitle } from 'reactstrap'
+import { baseUrl } from '../shared/baseurl';
 
 export const Chef = (props) => {
     const chef = props.chefs.map((chef) => {
@@ -7,7 +8,7 @@ export const Chef = (props) => {
             <div key={chef.id} className="col-10 col-sm-11 col-md-6 col-lg-4 p-3">
                 <Card className="shadow chef__card">
                     <CardHeader>{chef.name}</CardHeader>
-                    <CardImg src={chef.image} alt={chef.name} />
+                    <CardImg src={baseUrl + chef.image} alt={chef.name} />
                     <CardBody>
                         <CardTitle>{chef.designation}</CardTitle>
                         <CardText>{chef.description}</CardText>

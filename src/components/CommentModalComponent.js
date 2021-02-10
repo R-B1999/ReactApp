@@ -1,11 +1,15 @@
 import React from 'react';
-import { Control, LocalForm } from 'react-redux-form';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Label, Modal, ModalBody, ModalHeader, Row, Button } from 'reactstrap';
 
 const handleSubmit = (values, toggleCommentModal, dishId, addComment) => {
     toggleCommentModal();
     addComment(dishId, values.rating, values.author, values.comment);
 }
+
+const required = (val) => val && val.length;
+const maxlenght = (len) => (val) => !val || (val.lenght <= len);
+const minlength = (len) => (val) => !val || (val.lenght >= len);
 
 export const CommentModal = (props) => {
     return (
@@ -27,12 +31,36 @@ export const CommentModal = (props) => {
 
                     <Row className="form-group">
                         <Label htmlFor="author">Your Name</Label>
-                        <Control.text model=".author" id="author" name="author" className="form-control" />
+                        <Control.text model=".author" id="author" name="author" className="form-control"
+                            validators={{
+                                required,
+                                minlength: minlength(3),
+                                maxlenght: maxlenght(15)
+                            }} />
+                        <Errors
+                            className="text-danger"
+                            model=".author"
+                            show={(field) => field.touched}
+                            messages={{
+                                required: "Required",
+                                minlength: "Must be greater than 2 characters",
+                                maxlenght: "Must be 15 characters or less"
+                            }} />
                     </Row>
 
                     <Row className="form-group">
                         <Label htmlFor="comment">Commment</Label>
-                        <Control.textarea model=".comment" id="comment" name="comment" rows="4" className="form-control" />
+                        <Control.textarea model=".comment" id="comment" name="comment" rows="4" className="form-control"
+                            validators={{
+                                required
+                            }} />
+                        <Errors
+                            className="text-danger"
+                            model=".comment"
+                            show={(field) => field.touched}
+                            messages={{
+                                required: "Required"
+                            }} />
                     </Row>
 
                     <Button type="submit" name="submit" className="__link" color="blue">Submit</Button>
