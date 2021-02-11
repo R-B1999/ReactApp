@@ -1,13 +1,14 @@
 import React from 'react'
 import { Row, Label, Col, Button } from 'reactstrap';
 import { Form, Control, Errors, actions } from 'react-redux-form';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const required = (val) => val && val.length;
 const minLength = (len) => (val) => !val || (val.length >= len);
 const maxLength = (len) => (val) => !val || (val.length <= len);
 const isNumber = (val) => !isNaN(Number(val));
-const isEmail = (val) => /^[A-Z0-9._]+@[A-Z0-9._]+\.[A-Z]{2-4}$/;
+// const isEmail = (val) => /^[A-Za-z0-9._]+@[A-Za-z0-9._]+\.[A-Za-z]{2-4}$/i.test(val);
+const isEmail = (val) => /^\S+@\S+\.\S+$/i.test(val);
 
 
 export const Contact = (props) => {
@@ -15,12 +16,12 @@ export const Contact = (props) => {
     const submitHandle = (values) => {
         // alert(JSON.stringify(values));
 
-        if (values.firstname&&values.lastname&&values.contact&&values.email&&values.message) {
+        if (values.firstname && values.lastname && values.contact && values.email && values.message) {
 
             props.addFeedback(values);
             props.resetFeedbackForm();
-        }else{
-            toast.warning("fill all fields", {position: toast.POSITION.TOP_CENTER});
+        } else {
+            toast.warning("fill all fields", { position: toast.POSITION.TOP_CENTER });
         }
 
         // return(false);
