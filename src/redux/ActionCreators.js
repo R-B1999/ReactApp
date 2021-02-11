@@ -1,10 +1,46 @@
 import * as ActionType from "./ActionTypes";
 import { baseUrl } from "../shared/baseurl";
+import { toast } from "react-toastify";
 
 export const addComment = (comment) => ({
     type: ActionType.ADD_COMMENT,
     payload: comment
 });
+
+export const addFeedback = (values) => (dispatch) => {
+    const newFeedback = {
+        firstName: values.firstname,
+        lastName: values.lastname,
+        contactNo: values.contact,
+        email: values.email,
+        agree: values.agree,
+        contactType: values.contactType,
+        feedback: values.message
+    }
+    newFeedback.date = new Date().toISOString();
+    return fetch(baseUrl + 'feedback', {
+        method: 'POST',
+        body: JSON.stringify(newFeedback),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "same-origin"
+    }).then(response => {
+        if (response.ok) {
+            return toast.success("Feedback submitted", {position: toast.POSITION.TOP_CENTER});
+        } else {
+            let error = new Error("Error " + response.status + ":" + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }, err => {
+        let errMsg = new Error(err.message);
+        console.error(errMsg);
+        throw errMsg;
+    }).catch(err => {
+        toast.error("ERROR : feedback not submitted.", {position: toast.POSITION.TOP_CENTER})
+    });
+}
 
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     const newComment = {

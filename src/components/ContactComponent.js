@@ -1,17 +1,31 @@
 import React from 'react'
 import { Row, Label, Col, Button } from 'reactstrap';
-import { LocalForm, Control, Errors } from 'react-redux-form';
+import { Form, Control, Errors, actions } from 'react-redux-form';
+import {toast} from 'react-toastify';
 
 const required = (val) => val && val.length;
-const minLength = (len) => (val) => !val || val.length >= len;
+const minLength = (len) => (val) => !val || (val.length >= len);
+const maxLength = (len) => (val) => !val || (val.length <= len);
+const isNumber = (val) => !isNaN(Number(val));
+const isEmail = (val) => /^[A-Z0-9._]+@[A-Z0-9._]+\.[A-Z]{2-4}$/;
 
 
-const submitHandle = () => {
-    alert("not");
-    // return(false);
-}
+export const Contact = (props) => {
 
-export const Contact = () => {
+    const submitHandle = (values) => {
+        // alert(JSON.stringify(values));
+
+        if (values.firstname&&values.lastname&&values.contact&&values.email&&values.message) {
+
+            props.addFeedback(values);
+            props.resetFeedbackForm();
+        }else{
+            toast.warning("fill all fields", {position: toast.POSITION.TOP_CENTER});
+        }
+
+        // return(false);
+    }
+
     return (
         <div className="contact">
             <div className="container">
@@ -44,7 +58,7 @@ export const Contact = () => {
                     </div>
                 </div>
                 <div className="form">
-                    <LocalForm onSubmit={submitHandle} method="get">
+                    <Form model="feedback" onSubmit={(values) => submitHandle(values)}>
                         <Row className="form-group">
                             <Label htmlFor="firstname" md={2}>First Name</Label>
                             <Col md={10}>
@@ -55,14 +69,16 @@ export const Contact = () => {
                                     className="form-control"
                                     validators={{
                                         required,
-                                        minLength: minLength(4)
+                                        minLength: minLength(3),
+                                        maxLength: maxLength(15)
                                     }} />
                                 <Errors model=".firstname"
-                                    type="danger"
+                                    className="text-danger"
                                     show={(field) => field.touched}
                                     messages={{
-                                        required: 'required',
-                                        minLength: '4 characters atleast'
+                                        required: 'Required',
+                                        minLength: '3 characters atleast',
+                                        maxLength: 'Maximum 15 characters'
                                     }} />
                             </Col>
                         </Row>
@@ -73,7 +89,16 @@ export const Contact = () => {
                                     id="lastname"
                                     name="lastname"
                                     placeholder="Last Name"
-                                    className="form-control" />
+                                    className="form-control"
+                                    validators={{
+                                        required
+                                    }} />
+                                <Errors model=".lastname"
+                                    className="text-danger"
+                                    show={(field) => field.touched}
+                                    messages={{
+                                        required: "Required"
+                                    }} />
                             </Col>
                         </Row>
                         <Row className="form-group">
@@ -83,7 +108,23 @@ export const Contact = () => {
                                     id="contact"
                                     name="contact"
                                     placeholder="Contact No."
-                                    className="form-control" />
+                                    className="form-control"
+                                    validators={{
+                                        required,
+                                        isNumber,
+                                        minLength: minLength(10),
+                                        maxLength: maxLength(10)
+                                    }} />
+                                <Errors model=".contact"
+                                    className="text-danger"
+                                    show={(field) => field.touched}
+                                    messages={{
+                                        required: "Required",
+                                        isNumber: "Must be only digits",
+                                        minLength: "Not less than 10 digits",
+                                        maxLength: "Not more than 10 digits"
+
+                                    }} />
                             </Col>
                         </Row>
                         <Row className="form-group">
@@ -93,7 +134,18 @@ export const Contact = () => {
                                     id="email"
                                     name="email"
                                     placeholder="Email Address"
-                                    className="form-control" />
+                                    className="form-control"
+                                    validators={{
+                                        required,
+                                        isEmail
+                                    }} />
+                                <Errors model=".email"
+                                    className="text-danger"
+                                    show={(field) => field.touched}
+                                    messages={{
+                                        required: "Required",
+                                        isEmail: "Provide correct email"
+                                    }} />
                             </Col>
                         </Row>
                         <Row className="form-group">
@@ -111,8 +163,9 @@ export const Contact = () => {
                                 <Control.select model=".contactType"
                                     name="contactType"
                                     className="form-control">
-                                    <option>Tel.</option>
-                                    <option>Email</option>
+                                    <option disabled selected value="none">Select one</option>
+                                    <option value="contact">Tel.</option>
+                                    <option value="email">Email</option>
                                 </Control.select>
                             </Col>
                         </Row>
@@ -123,14 +176,23 @@ export const Contact = () => {
                                     id="message"
                                     name="message"
                                     rows="10"
-                                    className="form-control" />
+                                    className="form-control"
+                                    validators={{
+                                        required
+                                    }} />
+                                <Errors model=".message"
+                                    className="text-danger"
+                                    show="touched"
+                                    messages={{
+                                        required: "Required"
+                                    }} />
                             </Col>
                         </Row><Row className="form-group">
                             <Col md={{ size: 10, offset: 2 }}>
                                 <button type="submit" value="submit" className="btn btn-lg btn-outline-primary">Submit</button>
                             </Col>
                         </Row>
-                    </LocalForm>
+                    </Form>
                 </div>
             </div>
         </div>

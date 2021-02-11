@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap-social/bootstrap-social.css';
+import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 
 ReactDOM.render(

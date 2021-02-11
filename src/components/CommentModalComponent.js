@@ -4,7 +4,7 @@ import { Label, Modal, ModalBody, ModalHeader, Row, Button } from 'reactstrap';
 
 const handleSubmit = (values, toggleCommentModal, dishId, addComment) => {
     toggleCommentModal();
-    addComment(dishId, values.rating, values.author, values.comment);
+    addComment(dishId, parseInt(values.rating), values.author, values.comment);
 }
 
 const required = (val) => val && val.length;
@@ -20,13 +20,24 @@ export const CommentModal = (props) => {
 
                     <Row className="form-group">
                         <Label htmlFor="rating">Rating</Label>
-                        <Control.select model=".rating" id="rating" name="rating" className="form-control">
-                            <option>5</option>
-                            <option>4</option>
-                            <option>3</option>
-                            <option>2</option>
-                            <option>1</option>
+                        <Control.select model=".rating" id="rating" name="rating" className="form-control"
+                            validators={{
+                                required
+                            }}>
+                            <option selected disabled>Select Ratings</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
                         </Control.select>
+                        <Errors
+                            className="text-danger"
+                            model=".rating"
+                            show={(field) => field.touched}
+                            messages={{
+                                required: "Please Provide ratings"
+                            }} />
                     </Row>
 
                     <Row className="form-group">

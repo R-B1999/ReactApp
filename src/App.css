@@ -116,7 +116,7 @@ body {
 .banner {
   
   background: url( 'http://localhost:3001/images/background.jpg');
-  background-color: rgb(110, 170, 120);
+  background-color: seagreen;
   background-repeat: no-repeat;
   background-position: right center;
   background-size: cover;
