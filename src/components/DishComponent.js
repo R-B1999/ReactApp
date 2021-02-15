@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardFooter, CardHeader, CardImg, CardSubtitle, CardTitle } from 'reactstrap';
-import { baseUrl } from '../shared/baseurl';
+import { base } from '../shared/baseurl';
 import Comments from './CommentsComponent';
 import { Error } from './ErrorComponent';
 import { Loading } from './LoadingComponent';
@@ -42,7 +42,7 @@ const RenderDish = (props) => {
                     <div className="row justify-content-center ">
 
                         <div className="col-10 col-md-7 img">
-                            <CardImg src={baseUrl+props.dish.image} className="my-auto shadow" />
+                            <CardImg src={base+props.dish.image} className="my-auto shadow" />
                         </div>
 
                         <div className="col-10 col-md-5 my-auto dish__detail">

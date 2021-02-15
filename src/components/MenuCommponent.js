@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, CardSubtitle, CardHeader } from 'reactstrap';
-import { baseUrl } from '../shared/baseurl';
+import { base } from '../shared/baseurl';
 import { Error } from './ErrorComponent';
 import { Loading } from './LoadingComponent';
 
@@ -31,7 +31,7 @@ const MenuRender = ({ dishes, isLoading, errMsg }) => {
                 <Card title={dish.description} >
                     <CardHeader>{dish.name}</CardHeader>
                     <Link to={`/menu/${dish.id}`}>
-                        <CardImg src={baseUrl + dish.image}></CardImg>
+                        <CardImg src={base + dish.image}></CardImg>
                     </Link>
                     <CardBody>
                         <CardSubtitle className="row">

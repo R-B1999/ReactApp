@@ -115,7 +115,7 @@ body {
 
 .banner {
   
-  background: url( 'http://localhost:3001/images/background.jpg');
+  background: url( 'https://raw.githubusercontent.com/R-B1999/json-server/master/public/images/background.jpg');
   background-color: seagreen;
   background-repeat: no-repeat;
   background-position: right center;
